@@ -37,10 +37,20 @@ public class HelloController {
 //        return restTemplate.getForEntity("http://CLOUD-PROVIDER/provider/getUserById/" + id,User.class).getBody() ;
     }
 
+    @GetMapping("/postUser")
+    @ResponseBody
+    public User postUser(User user){
+        System.out.println(user);
+        return userClient.postUser(user) ;
+//        return restTemplate.getForEntity("http://CLOUD-PROVIDER/provider/getUserById/" + id,User.class).getBody() ;
+    }
+
     @GetMapping("/serviceUrl")
     @ResponseBody
     public List<ServiceInstance> serviceUrl(){
         List<ServiceInstance> localServiceInstance = this.discoveryClient.getInstances("CLOUD-PROVIDER") ;
         return localServiceInstance;
     }
+
+
 }
